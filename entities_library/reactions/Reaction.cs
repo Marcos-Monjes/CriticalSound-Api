@@ -1,4 +1,6 @@
-namespace entitities_library.reactions;
+using entities_library.login;
+
+namespace entities_library.reactions;
 
 public class Reaction
 {

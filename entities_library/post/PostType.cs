@@ -1,4 +1,4 @@
-namespace entitities_library.post;
+namespace entities_library.post;
 
 public enum PostType
 {

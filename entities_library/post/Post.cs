@@ -1,4 +1,10 @@
-namespace entitities_library.post;
+using entities_library.login;
+using entities_library.comment;
+using entities_library.reactions;
+
+
+
+namespace entities_library.post;
 
 public class Post
 {
@@ -8,9 +14,9 @@ public class Post
     
     public List<Comment> Comments { get; set; } = new List<Comment>();
 
-    public List<Raction> Ractions { get; set; } = new List<Reaction>();
+    public List<Reaction> Ractions { get; set; } = new List<Reaction>();
 
-    public DateTime DateTime { get; set; };
+    public DateTime DateTime { get; set; }
 
     public required User User { get; set; }
 

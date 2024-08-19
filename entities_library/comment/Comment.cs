@@ -1,4 +1,9 @@
-namespace entitities_library.comment;
+using entities_library.login;
+using entities_library.reactions;
+
+
+
+namespace entities_library.comment;
 
 public class Comment
 {
@@ -10,6 +15,6 @@ public class Comment
 
     public DateTime Date { get; set; }  
 
-    public ReactionType ReactionType { get; set; }  
+    public required Reaction Reaction { get; set; }  
 
 }
