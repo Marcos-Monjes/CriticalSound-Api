@@ -1,8 +1,10 @@
 using entities_library.login;
-using entitities_library.comment;
-using entitities_library.reactions;
+using entities_library.comment;
+using entities_library.reactions;
 
-namespace entitities_library.post;
+
+
+namespace entities_library.post;
 
 public class Post
 {

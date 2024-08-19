@@ -1,4 +1,4 @@
-namespace entitities_library.reactions;
+namespace entities_library.reactions;
 
 public enum ReactionType
 {
