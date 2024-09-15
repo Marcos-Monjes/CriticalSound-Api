@@ -1,12 +1,17 @@
+using entities_library.ban;
 namespace entities_library.login;
+
 
 public class User : Person
 {
 
     #region Atributtes
+
+    public required string Username { get; set; }
+
     public required string Password { get; set; }
 
-    public UserStatus UserStatus { get; set; } = UserStatus.Active;
+    public UserBan UserBan { get; set; } = UserBan.Active;
     #endregion
 
     #region Methods

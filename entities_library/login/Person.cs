@@ -4,7 +4,7 @@ public class Person
 {
     public long Id { get; set; }
 
-    public required string Name { get; set; }
+    public required string Name { get; set; } //eliminar estos datos en caso que no esten en el formualrio de registro
 
     public required string LastName { get; set; }
 

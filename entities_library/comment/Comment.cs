@@ -1,8 +1,6 @@
 using entities_library.login;
-using entities_library.reactions;
-
-
-
+using entities_library.ban;
+using entities_library.report;
 namespace entities_library.comment;
 
 public class Comment
@@ -13,8 +11,8 @@ public class Comment
 
     public required User User { get; set; } 
 
-    public DateTime Date { get; set; }  
-
-    public required Reaction Reaction { get; set; }  
+    public required UserBan UserBan { get; set; } //si esta activo o no
+    public required ReportUser ReportUser { get; set; } //preguntar si este es posible o el de report comun
+    public DateTime Date { get; set; }  //ver
 
 }
