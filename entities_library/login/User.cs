@@ -7,11 +7,13 @@ public class User : Person
 
     #region Atributtes
 
-    public required string Username { get; set; }
+    public  string Mail { get; set; }="";
 
-    public required string Password { get; set; }
+    public string Password { get; set; } ="";
 
-    public UserBan UserBan { get; set; } = UserBan.Active;
+    public UserStatus UserStatus { get; set; } = UserStatus.Active;
+
+
     #endregion
 
     #region Methods
