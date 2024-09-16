@@ -1,8 +1,9 @@
 
 //ejemplo provisorio cortesia de rulo
 using Microsoft.AspNetCore.Mvc;
-using web_api.dto.common;
 using web_api.dto.comment;
+using web_api.dto.common;
+// using web_api.dto.comment;
 using web_api.mock;
 
 namespace web_api.Controllers;
@@ -19,10 +20,10 @@ public class CommentController : ControllerBase
     }
 
     [HttpPost(Name = "CreateComment")]
-    public IActionResult Post(CommentPostRequestDTO commentPostRequestDTO)
+    public IActionResult Post(CommentRequestDTO commentRequestDTO)
     {
         // Validación: Verifica si el cuerpo de la solicitud es nulo
-        if (commentPostRequestDTO == null)
+        if (commentRequestDTO == null)
         {
             return BadRequest(new ErrorResponseDTO
             {
@@ -32,7 +33,7 @@ public class CommentController : ControllerBase
         }
 
         // Validación: El texto del comentario es obligatorio
-        if (string.IsNullOrEmpty(commentPostRequestDTO.content))
+        if (string.IsNullOrEmpty(CommentRequestDTO.text))
         {
             return BadRequest(new ErrorResponseDTO
             {
@@ -42,7 +43,7 @@ public class CommentController : ControllerBase
         }
 
         // Validación: El ID del usuario que escribe el comentario es obligatorio
-        if (commentPostRequestDTO.userId <= 0)
+        if (CommentRequestDTO.id <= 0)
         {
             return BadRequest(new ErrorResponseDTO
             {
@@ -52,7 +53,7 @@ public class CommentController : ControllerBase
         }
 
         // Validación: El ID del post al que pertenece el comentario es obligatorio
-        if (commentPostRequestDTO.postId <= 0)
+        if (CommentRequestDTO.postId <= 0)
         {
             return BadRequest(new ErrorResponseDTO
             {
@@ -69,12 +70,12 @@ public class CommentController : ControllerBase
         );
 
         // Respuesta exitosa: Devuelve los datos del comentario recién creado
-        return Ok(new CommentPostResponseDTO
+        return Ok(new CommentResponseDTO
         {
             id = commentId,
-            content = commentPostRequestDTO.content,
-            userId = commentPostRequestDTO.userId,
-            postId = commentPostRequestDTO.postId,
+            text = CommentRequestDTO.text,
+            userId = CommentRequestDTO.userId,
+            postId = CommentRequestDTO.postId,
             createdAt = DateTime.Now // Suponiendo que la fecha de creación es el momento actual
         });
     }
