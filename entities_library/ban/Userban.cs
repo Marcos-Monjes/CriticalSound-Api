@@ -1,6 +1,6 @@
 namespace entities_library.ban;
 
-public enum UserBan
+public enum Userban
 {
     
     Active,

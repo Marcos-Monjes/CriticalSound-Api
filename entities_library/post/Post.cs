@@ -8,10 +8,8 @@ namespace entities_library.post;
 
 public class Post
 {
-    public long Id { get; set; }
-
+    public long PostId { get; set; }
     public required string Tittle { get; set; } // titulo de la cancion artista o la banda y el nombre de la cancion
-    
     public required string UrlImage { get; set; }  //averiguar como almacenar la url de una imagen
     public required string description{ get; set; }
     public List<Comment> Comments { get; set; } = new List<Comment>();
