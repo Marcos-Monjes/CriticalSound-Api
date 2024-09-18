@@ -1,9 +1,6 @@
-// using web_api.dto.common;
-// using web_api.dto.login;
-// using web_api.mock;
 using Microsoft.AspNetCore.Mvc;
-using web_api.dto.post;
-using entities_library.post;
+using web_api.dto.DTO.post;
+
 
 namespace web_api.Controllers;
 
@@ -12,12 +9,11 @@ namespace web_api.Controllers;
 public class PostController : ControllerBase
 {
     private readonly ILogger<PostController> _logger;
-
     public PostController(ILogger<PostController> logger)
     {
         _logger = logger;
     }
-    private static int nextId = 1;
+    private static int nextId = 1; //esta variable debe irse cuando conectemos la bd para que los id los maneje la bd
 
     [HttpPost(Name = "CreatePost")]
     public IActionResult Post(PostRequestDTO postRequestDTO)
@@ -31,13 +27,9 @@ public class PostController : ControllerBase
         var newPost = new PostResponseDTO
         {
             Id = nextId++,
-
             Title = postRequestDTO.Title,
-
             Genre = postRequestDTO.Genre,
-
             UrlImage = postRequestDTO.UrlImage,
-
             Description = postRequestDTO.Description
         };
 
@@ -46,6 +38,21 @@ public class PostController : ControllerBase
         //201 Created con el post creado
         return CreatedAtAction(nameof(Post), new { id = newPost.Id }, newPost);
     }
+
+    [HttpGet(Name = "GetAllPosts")]
+    public IActionResult GetAll()
+    {
+        //aca añadir lo de la base de datos despues
+
+        return Ok(new List<PostResponseDTO>());// cuando la bd esté aca tiene que devolver los posts que esten en ella
+    }
+
+    [HttpGet("{id}", Name ="GetPostById")]
+    public IActionResult Get(int id)
+    {
+        return NotFound();// esto tmb cuando la bd esté, el codigo este cambia.
+    }
+
 }
 
 

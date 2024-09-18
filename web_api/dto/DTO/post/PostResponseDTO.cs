@@ -1,4 +1,4 @@
-namespace web_api.dto.post
+namespace web_api.dto.DTO.post
 {
     public class PostResponseDTO
     {

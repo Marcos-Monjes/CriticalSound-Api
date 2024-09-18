@@ -1,5 +1,5 @@
-namespace web_api.dto.post
-{
+namespace web_api.dto.DTO.post;
+
     public class PostRequestDTO
     {
         public string Title { get; set; } = "";//titulo del post
@@ -8,6 +8,6 @@ namespace web_api.dto.post
         public string Description { get; set; } = "";//descripcn
         
     }
-}
+
 
 
