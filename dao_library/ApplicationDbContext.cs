@@ -17,17 +17,17 @@ public class ApplicationDbContext : DbContext
         : base(options)
     {}
 
-    public DbSet<Billboard>? Billboards { get;}
-    public DbSet<Comment>? Comments { get;}
-    public DbSet<Filee>? Filees  { get;}
-    public DbSet<FileType>? FileTypes { get;}
-    public DbSet<Person>? Persons { get;}
-    public DbSet<User>? Users { get;}
-    public DbSet<UserBan>? UserBans { get;}
-    public DbSet<Post>? Posts { get;}
-    public DbSet<Reaction>? Reactions{ get;}
-    public DbSet<Report>? Reports {get;}
-    public DbSet<ReportUser>? ReportUsers { get;}
+    public DbSet<Billboard>? Billboards { get; set;}
+    public DbSet<Comment>? Comments { get; set;}
+    public DbSet<Filee>? Filees  { get; set;}
+    public DbSet<FileType>? FileTypes { get; set;}
+    public DbSet<Person>? Persons { get; set;}
+    public DbSet<User>? Users { get; set;}
+    public DbSet<UserBan>? UserBans { get; set;}
+    public DbSet<Post>? Posts { get; set;}
+    public DbSet<Reaction>? Reactions{ get; set;}
+    public DbSet<Report>? Reports {get; set;}
+    public DbSet<ReportUser>? ReportUsers { get; set;}
 
     // Sobrescribimos el método OnModelCreating para definir la relación uno a uno
     protected override void OnModelCreating(ModelBuilder modelBuilder)

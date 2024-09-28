@@ -1,4 +1,5 @@
 using entities_library.ban;
+
 namespace entities_library.login;
 
 
@@ -7,11 +8,14 @@ public class User : Person
 
     #region Atributtes
 
-    public  string Mail { get; set; }="";
+    public  string  Mail { get; set; }="";
 
     public string Password { get; set; } ="";
 
+
     public UserStatus UserStatus { get; set; } = UserStatus.Active;
+
+    public entities_library.file_system.Filee? Filee { get; set; }
 
 
     #endregion
