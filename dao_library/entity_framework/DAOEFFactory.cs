@@ -5,6 +5,8 @@ using dao_library.Interfaces.post;
 using dao_library.entity_framework.post;
 using dao_library.Interfaces.comment;
 using dao_library.entity_framework.comment;
+using dao_library.Interfaces.billboard;
+using dao_library.entity_framework.billboard;
 
 namespace dao_library.entity_framework;
 
@@ -15,6 +17,11 @@ public class DAOEFFactory : IDAOFactory
     public DAOEFFactory(ApplicationDbContext context)
     {
         this.context = context;
+    }
+
+    public IDAOBillboard CreateDAOBillboard()
+    {
+        return new DAOEFBillboard(context);
     }
 
     public IDAOComment CreateDAOComment()
@@ -40,5 +47,10 @@ public class DAOEFFactory : IDAOFactory
     public IDAOUserBan CreateDAOUserBan()
     {
         return new DAOEFUserBan(context);
+    }
+
+    public IDAOUserStatus CreateDAOUserStatus()
+    {
+        return new DAOEFUserStatus(context);
     }
 }
