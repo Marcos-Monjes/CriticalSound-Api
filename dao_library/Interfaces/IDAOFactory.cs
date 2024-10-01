@@ -1,3 +1,4 @@
+using dao_library.Interfaces.comment;
 using dao_library.Interfaces.login;
 using dao_library.Interfaces.post;
 
@@ -9,4 +10,5 @@ public interface IDAOFactory
     IDAOPerson CreateDAOPerson();
     IDAOUserBan CreateDAOUserBan();
     IDAOPost CreateDAOPost();
+    IDAOComment CreateDAOComment();
 }
