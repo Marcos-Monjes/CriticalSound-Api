@@ -59,13 +59,9 @@ public class DAOEFFactory : IDAOFactory
         return new DAOEFUserStatus(context);
     }
 
-    public IDAOFileType CreateDAOFiletype()
+    public IDAOFile CreateDAOFile()
     {
-        return new DAOEFFileType(context);
-    }
-    public IDAOFilee CreateDAOFilee()
-    {
-        return new DAOEFFilee(context);
+        return new DAOEFFile(context);
     }
     public IDAOGenre CreateDAOGenre()
     {
@@ -74,16 +70,6 @@ public class DAOEFFactory : IDAOFactory
 
     public IDAOFileType CreateDAOFileType()
     {
-        throw new NotImplementedException();
-    }
-
-    IDAOFilee IDAOFactory.CreateDAOFilee()
-    {
-        throw new NotImplementedException();
-    }
-
-    IDAOGenre IDAOFactory.CreateDAOGenre()
-    {
-        throw new NotImplementedException();
+        return new DAOEFFileType(context);
     }
 }

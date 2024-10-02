@@ -18,8 +18,6 @@ public interface IDAOFactory
     IDAOComment CreateDAOComment();
     IDAOBillboard CreateDAOBillboard();
     IDAOFileType CreateDAOFileType();
-    IDAOFilee CreateDAOFilee();
     IDAOGenre CreateDAOGenre();
-
-
+    IDAOFile CreateDAOFile();
 }

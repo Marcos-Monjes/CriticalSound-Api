@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dao_library;
 
@@ -10,9 +11,11 @@ using dao_library;
 namespace daolibrary.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241002124653_AppDbContextModificado")]
+    partial class AppDbContextModificado
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,30 +76,6 @@ namespace daolibrary.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("entities_library.file_system.File", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("FileTypeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Path")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Path2")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FileTypeId");
-
-                    b.ToTable("Files");
-                });
-
             modelBuilder.Entity("entities_library.file_system.FileType", b =>
                 {
                     b.Property<long>("Id")
@@ -110,6 +89,26 @@ namespace daolibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("FileTypes");
+                });
+
+            modelBuilder.Entity("entities_library.file_system.Filee", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("FileTypeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FileTypeId");
+
+                    b.ToTable("Filees");
                 });
 
             modelBuilder.Entity("entities_library.genre.Genre", b =>
@@ -140,15 +139,11 @@ namespace daolibrary.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Mail")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -245,12 +240,12 @@ namespace daolibrary.Migrations
                 {
                     b.HasBaseType("entities_library.login.Person");
 
-                    b.Property<string>("Description")
+                    b.Property<long?>("FileeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Mail")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<long?>("FileId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -259,7 +254,7 @@ namespace daolibrary.Migrations
                     b.Property<int>("UserStatus")
                         .HasColumnType("int");
 
-                    b.HasIndex("FileId");
+                    b.HasIndex("FileeId");
 
                     b.HasDiscriminator().HasValue("User");
                 });
@@ -298,7 +293,7 @@ namespace daolibrary.Migrations
                     b.Navigation("UserBan");
                 });
 
-            modelBuilder.Entity("entities_library.file_system.File", b =>
+            modelBuilder.Entity("entities_library.file_system.Filee", b =>
                 {
                     b.HasOne("entities_library.file_system.FileType", "FileType")
                         .WithMany()
@@ -346,11 +341,11 @@ namespace daolibrary.Migrations
 
             modelBuilder.Entity("entities_library.login.User", b =>
                 {
-                    b.HasOne("entities_library.file_system.File", "File")
+                    b.HasOne("entities_library.file_system.Filee", "Filee")
                         .WithMany()
-                        .HasForeignKey("FileId");
+                        .HasForeignKey("FileeId");
 
-                    b.Navigation("File");
+                    b.Navigation("Filee");
                 });
 
             modelBuilder.Entity("entities_library.post.Post", b =>
