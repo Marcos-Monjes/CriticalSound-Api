@@ -17,16 +17,16 @@ public class ApplicationDbContext : DbContext
         : base(options)
     {}
 
-    public DbSet<Billboard>? Billboards { get; set;}
-    public DbSet<Comment>? Comments { get; set;}
-    public DbSet<Filee>? Filees  { get; set;}
-    public DbSet<FileType>? FileTypes { get; set;}
-    public DbSet<Person>? Persons { get; set;}
-    public DbSet<User>? Users { get; set;}
-    public DbSet<UserBan>? UserBans { get; set;}
-    public DbSet<Post>? Posts { get; set;}
-    public DbSet<Reaction>? Reactions{ get; set;}
-    public DbSet<Genre>? Genres { get; set;}
+    public DbSet<Billboard>? Billboard { get; set;}
+    public DbSet<Comment>? Comment { get; set;}
+    public DbSet<Filee>? Filee  { get; set;}
+    public DbSet<FileType>? FileType { get; set;}
+    public DbSet<Person>? Person { get; set;}
+    public DbSet<User>? User { get; set;}
+    public DbSet<UserBan>? UserBan { get; set;}
+    public DbSet<Post>? Post { get; set;}
+    public DbSet<Reaction>? Reaction{ get; set;}
+    public DbSet<Genre>? Genre { get; set;}
 
 
     // Sobrescribimos el método OnModelCreating para definir la relación uno a uno
