@@ -1,3 +1,4 @@
+using dao_library.Interfaces.genre;
 using entities_library.genre;
 
 namespace dao_library.entity_framework.genre;

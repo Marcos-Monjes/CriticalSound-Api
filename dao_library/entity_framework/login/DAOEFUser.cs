@@ -27,9 +27,9 @@ public class DAOEFUser : IDAOUser
     public async Task<User?> Get(string userName, string password)
     {
         if(userName == null) return null;
-        if(context.Users == null) return null;
+        if(context.User == null) return null;
 
-        User? user = await context.Users
+        User? user = await context.User
             .Where(user => user.Mail.ToLower() == userName.ToLower())
             .FirstOrDefaultAsync();
 
@@ -42,17 +42,17 @@ public class DAOEFUser : IDAOUser
         int pageSize
     )
     {
-        IQueryable<User> usersQuery = context.Users;
+        IQueryable<User> userQuery = context.User;
 
         if(query != null)
         {
-            usersQuery = usersQuery.Where(
+            userQuery = userQuery.Where(
                 p => p.Mail.Contains(query) || p.Name.Contains(query));
         }
 
-        int totalRecords = await usersQuery.CountAsync();
+        int totalRecords = await userQuery.CountAsync();
 
-        var users = await usersQuery
+        var users = await userQuery
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();

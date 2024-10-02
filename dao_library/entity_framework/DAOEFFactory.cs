@@ -7,9 +7,10 @@ using dao_library.Interfaces.comment;
 using dao_library.entity_framework.comment;
 using dao_library.Interfaces.billboard;
 using dao_library.entity_framework.billboard;
-using dao_library.Interfaces.filesystem;
-using dao_library.entity_framework.filesystem;
+using dao_library.Interfaces.file_system;
+using dao_library.entity_framework.file_system;
 using dao_library.entity_framework.genre;
+using dao_library.Interfaces.genre;
 
 
 namespace dao_library.entity_framework;
@@ -69,5 +70,20 @@ public class DAOEFFactory : IDAOFactory
     public IDAOGenre CreateDAOGenre()
     {
         return new DAOEFGenre(context);
+    }
+
+    public IDAOFileType CreateDAOFileType()
+    {
+        throw new NotImplementedException();
+    }
+
+    IDAOFilee IDAOFactory.CreateDAOFilee()
+    {
+        throw new NotImplementedException();
+    }
+
+    IDAOGenre IDAOFactory.CreateDAOGenre()
+    {
+        throw new NotImplementedException();
     }
 }

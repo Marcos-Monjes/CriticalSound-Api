@@ -1,4 +1,4 @@
-namespace entities_library.genre
+namespace entities_library.genre;
 
 public class Genre {
 
