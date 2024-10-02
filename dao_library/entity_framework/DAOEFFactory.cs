@@ -7,6 +7,10 @@ using dao_library.Interfaces.comment;
 using dao_library.entity_framework.comment;
 using dao_library.Interfaces.billboard;
 using dao_library.entity_framework.billboard;
+using dao_library.Interfaces.filesystem;
+using dao_library.entity_framework.filesystem;
+using dao_library.entity_framework.genre;
+
 
 namespace dao_library.entity_framework;
 
@@ -52,5 +56,18 @@ public class DAOEFFactory : IDAOFactory
     public IDAOUserStatus CreateDAOUserStatus()
     {
         return new DAOEFUserStatus(context);
+    }
+
+    public IDAOFileType CreateDAOFiletype()
+    {
+        return new DAOEFFileType(context);
+    }
+    public IDAOFilee CreateDAOFilee()
+    {
+        return new DAOEFFilee(context);
+    }
+    public IDAOGenre CreateDAOGenre()
+    {
+        return new DAOEFGenre(context);
     }
 }
