@@ -11,6 +11,7 @@ using dao_library.Interfaces.file_system;
 using dao_library.entity_framework.file_system;
 using dao_library.entity_framework.genre;
 using dao_library.Interfaces.genre;
+using dao_library.Interfaces.reaction;
 
 
 namespace dao_library.entity_framework;
@@ -71,5 +72,15 @@ public class DAOEFFactory : IDAOFactory
     public IDAOFileType CreateDAOFileType()
     {
         return new DAOEFFileType(context);
+    }
+
+    public IDAOReaction CreateDAOReaction()
+    {
+        throw new NotImplementedException();
+    }
+
+    public IDAOReactionType CreateDAOReactionType()
+    {
+        throw new NotImplementedException();
     }
 }

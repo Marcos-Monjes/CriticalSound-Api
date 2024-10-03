@@ -4,6 +4,7 @@ using dao_library.Interfaces.login;
 using dao_library.Interfaces.post;
 using dao_library.Interfaces.file_system;
 using dao_library.Interfaces.genre;
+using dao_library.Interfaces.reaction;
 
 
 namespace dao_library.Interfaces;
@@ -20,4 +21,6 @@ public interface IDAOFactory
     IDAOFileType CreateDAOFileType();
     IDAOGenre CreateDAOGenre();
     IDAOFile CreateDAOFile();
+    IDAOReaction CreateDAOReaction();
+    IDAOReactionType CreateDAOReactionType();
 }
