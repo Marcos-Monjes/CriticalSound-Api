@@ -1,10 +1,12 @@
-using System.IO.Pipelines;
+using dao_library.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using web_api.dto.common;
 using web_api.dto.register;
+using dao_library.Interfaces.login;
+using entities_library.login;
 
-// using web_api.helpers;   
-using web_api.mock;
+
+
 
 namespace web_api.Controllers;
 
@@ -15,14 +17,21 @@ public class RegisterController : ControllerBase
 {
     private readonly ILogger<RegisterController> _logger;
     
-    public RegisterController(ILogger<RegisterController> logger)
+    private readonly IDAOFactory daoFactory;
+    public RegisterController(ILogger<RegisterController> logger, IDAOFactory daoFactory)
     {
         _logger = logger;
+        this.daoFactory = daoFactory;
     }
 
-    [HttpPost(Name = "CreateRegister")]
-    public IActionResult Post(RegisterPostRequestDTO RegisterPostRequestDTO)
+    [HttpPost(Name = "CreateUser")]
+    public async Task<IActionResult> Post(RegisterPostRequestDTO RegisterPostRequestDTO)
     {
+        IDAOUser daoRegisterUser = daoFactory.CreateDAOUser();
+
+        User? user = await daoRegisterUser.GetByUsername(
+            RegisterPostRequestDTO.userName
+        );
         if(RegisterPostRequestDTO == null)
         {
             return BadRequest(new ErrorResponseDTO
@@ -32,16 +41,7 @@ public class RegisterController : ControllerBase
             });
         }
 
-        if(string.IsNullOrEmpty(RegisterPostRequestDTO.name))
-        {
-            return BadRequest(new ErrorResponseDTO
-            {
-                success = false,
-                message = "El nombre es un dato obligatorio"
-            });
-        }
-
-        if(string.IsNullOrEmpty(RegisterPostRequestDTO.username))
+        if(string.IsNullOrEmpty(RegisterPostRequestDTO.userName))
         {
             return BadRequest(new ErrorResponseDTO
             {
@@ -77,19 +77,24 @@ public class RegisterController : ControllerBase
             });
         }
 
-        long id = UserMock.Instance.CreateUser(
-            RegisterPostRequestDTO.name, 
-            RegisterPostRequestDTO.username, 
-            RegisterPostRequestDTO.mail, 
-            RegisterPostRequestDTO.birthdate,
-            RegisterPostRequestDTO.password);
 
         return Ok(new RegisterPostResponseDTO
         {
-            id = id,
-            name = RegisterPostRequestDTO.name,
-            username = RegisterPostRequestDTO.username,
-            mail = RegisterPostRequestDTO.mail
+            success= true,
+            userName = RegisterPostRequestDTO.userName,
+            mail = RegisterPostRequestDTO.mail,
+            
         });
     }
 }
+
+// return Ok(new LoginResponseDTO 
+//             {
+//                 success = true,
+//                 message = "",
+//                 id = user.Id,
+//                 userName = user.userName,
+//                 description = user.Description,
+//                 urlAvatar = "",
+//                 mail = user.Mail
+//             });
