@@ -11,6 +11,9 @@ public interface IDAOUser
     );
 
     Task<User> GetById(long id);
+
+    Task<User?> GetByUsername(string username); //para saber si el nombre de usuarip ya es ocupado por otro
+
     Task Save(User user);
     
     //NO PROGRAMAR
