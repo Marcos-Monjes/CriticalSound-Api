@@ -3,7 +3,8 @@ namespace entities_library.login;
 public class User : Person
 {
     #region Atributtes
-    public string Password { get; set; } = "";
+    public string password { get; set; } = "";
+    public required string userName{ get; set; }
 
     public UserStatus UserStatus { get; set; } = UserStatus.Active;
 
@@ -15,12 +16,12 @@ public class User : Person
     #region Methods
     public void Encrypt(string password)
     {
-        this.Password = this.encrypt(password);
+        this.password = this.encrypt(password);
     } 
 
     public bool IsPassword(string password)
     {
-        return this.encrypt(password) == this.Password;
+        return this.encrypt(password) == this.password;
     }
 
     private string encrypt(string password)
