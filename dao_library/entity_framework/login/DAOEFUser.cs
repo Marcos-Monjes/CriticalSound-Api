@@ -26,8 +26,8 @@ public class DAOEFUser : IDAOUser
 
     public async Task<User?> Get(string userName, string password)
     {
-        if(userName == null) return null;
-        if(context.Users == null) return null;
+        if (userName == null) return null;
+        if (context.Users == null) return null;
 
         User? user = await context.Users
             .Where(user => user.Mail.ToLower() == userName.ToLower())
@@ -42,18 +42,12 @@ public class DAOEFUser : IDAOUser
         int pageSize
     )
     {
-        // if (context.Users == null)
-        // {
-        //     return (Enumerable.Empty<User>(), 0); // Retorna lista vacía y 0 registros si context.Users es null
-        // }
-
-
         IQueryable<User>? usersQuery = context.Users;
 
-        if(query != null)
+        if (query != null)
         {
             usersQuery = usersQuery.Where(
-                p => p.Mail.Contains(query) || p.Name.Contains(query));
+                p => p.Mail.Contains(query) || p.userName.Contains(query));
         }
 
         int totalRecords = await usersQuery.CountAsync();
@@ -64,6 +58,15 @@ public class DAOEFUser : IDAOUser
             .ToListAsync();
 
         return (users, totalRecords);
+    }
+
+    public async Task<User?> GetByUsername(string username)
+    {
+        if (context.Users == null) return null;
+
+        // Buscar un usuario por su nombre de usuario (username)
+        return await context.Users
+            .FirstOrDefaultAsync(user => user.userName.ToLower() == username.ToLower());
     }
 
     public Task Save(User user)
