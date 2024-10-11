@@ -140,15 +140,7 @@ namespace daolibrary.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<string>("Mail")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -252,12 +244,16 @@ namespace daolibrary.Migrations
                     b.Property<long?>("FileId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Password")
+                    b.Property<int>("UserStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("password")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("UserStatus")
-                        .HasColumnType("int");
+                    b.Property<string>("userName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasIndex("FileId");
 
