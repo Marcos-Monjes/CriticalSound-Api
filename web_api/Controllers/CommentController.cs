@@ -16,7 +16,7 @@ public class CommentController : ControllerBase
     }
     private static int nextId = 1; //esta variable debe irse cuando conectemos la bd para que los id los maneje la bd
 
-    [HttpPost(Name = "CreatePost")]
+    [HttpPost(Name = "CreateComment")]
     public IActionResult Post(CommentRequestDTO commentRequestDTO)
     {
         if (commentRequestDTO == null)
