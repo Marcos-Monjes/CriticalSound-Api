@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using web_api.dto.common;
 using web_api.dto.login;
-using web_api.mock;
 using entities_library.login;
 using dao_library.Interfaces.login;
 using dao_library.Interfaces;
@@ -30,7 +29,7 @@ public class LoginController : ControllerBase
         IDAOUser daoUser = daoFactory.CreateDAOUser();
         
         User? user = await daoUser.Get(
-            loginRequestDTO.mail,
+            loginRequestDTO.userName,
             loginRequestDTO.password
         );
 
