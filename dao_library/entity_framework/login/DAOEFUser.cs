@@ -30,7 +30,7 @@ public class DAOEFUser : IDAOUser
         if (context.Users == null) return null;
 
         User? user = await context.Users
-            .Where(user => user.Mail.ToLower() == userName.ToLower())
+            .Where(user => user.userName.ToLower() == userName.ToLower())
             .FirstOrDefaultAsync();
 
         return user;
@@ -60,13 +60,16 @@ public class DAOEFUser : IDAOUser
         return (users, totalRecords);
     }
 
-    public async Task<User?> GetByUsername(string username)
+    public async Task<User?> GetByUsername(string userName)
     {
+       if (userName == null) return null;
         if (context.Users == null) return null;
 
-        // Buscar un usuario por su nombre de usuario (username)
-        return await context.Users
-            .FirstOrDefaultAsync(user => user.userName.ToLower() == username.ToLower());
+        User? user = await context.Users
+            .Where(user => user.userName.ToLower() == userName.ToLower())
+            .FirstOrDefaultAsync();
+
+        return user;
     }
 
     public Task Save(User user)
