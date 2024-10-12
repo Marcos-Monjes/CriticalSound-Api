@@ -118,7 +118,11 @@ namespace daolibrary.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<string>("genretype")
+                    b.Property<string>("description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("genreType")
                         .IsRequired()
                         .HasColumnType("longtext");
 
