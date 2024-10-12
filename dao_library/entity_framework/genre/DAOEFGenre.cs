@@ -1,5 +1,6 @@
 using dao_library.Interfaces.genre;
 using entities_library.genre;
+using Microsoft.EntityFrameworkCore;
 
 namespace dao_library.entity_framework.genre;
 
@@ -22,13 +23,36 @@ public class DAOEFGenre : IDAOGenre
         throw new NotImplementedException();
     }
 
-    public Task<Genre> GetById(long id)
+    public async Task<Genre?> GetById(long? id)
     {
-        throw new NotImplementedException();
+        if (id == null) return null;
+        if (context.Genres == null) return null;
+
+        Genre? genreId = await context.Genres
+            .Where(genreId => genreId.id == id)
+            .FirstOrDefaultAsync();
+
+        return genreId;
     }
 
-    public Task Save(Genre genre)
+    public async Task<Genre?> GetByType(string genreType)
     {
-        throw new NotImplementedException();
+        if (genreType == null) return null;
+        if (context.Genres == null) return null;
+
+        Genre? genre = await context.Genres
+            .Where(genre => genre.genreType.ToLower() == genreType.ToLower())
+            .FirstOrDefaultAsync();
+
+        return genre;
+    }
+
+    public async Task Save(Genre genre)
+    {
+        if (genre == null){
+            throw new ArgumentNullException(nameof(genre));
+        }
+        await context.Genres.AddAsync(genre);
+        await context.SaveChangesAsync(); 
     }
 }
