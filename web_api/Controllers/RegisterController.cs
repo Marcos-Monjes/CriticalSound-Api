@@ -29,9 +29,11 @@ public class RegisterController : ControllerBase
     {
         IDAOUser daoRegisterUser = daoFactory.CreateDAOUser();
 
-        User? userExisting = await daoRegisterUser.Get(RegisterPostRequestDTO.userName, RegisterPostRequestDTO.password);
+        User? userExisting = await daoRegisterUser.Get(
+        RegisterPostRequestDTO.userName, 
+        RegisterPostRequestDTO.password);
         
-        if (userExisting == null)
+        if (userExisting != null && userExisting.userName == RegisterPostRequestDTO.userName)
         {
             return BadRequest(new ErrorResponseDTO
             {
@@ -95,14 +97,3 @@ public class RegisterController : ControllerBase
         });
     }
 }
-
-// return Ok(new LoginResponseDTO 
-//             {
-//                 success = true,
-//                 message = "",
-//                 id = user.Id,
-//                 userName = user.userName,
-//                 description = user.Description,
-//                 urlAvatar = "",
-//                 mail = user.Mail
-//             });
