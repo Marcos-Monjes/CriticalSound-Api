@@ -10,7 +10,7 @@ public interface IDAOUser
         int pageSize
     );
 
-    Task<User> GetById(long id);
+    Task<User?> GetById(long? id);
 
     Task<User?> GetByUsername(string username); //para saber si el nombre de usuarip ya es ocupado por otro
 

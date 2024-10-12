@@ -19,9 +19,16 @@ public class DAOEFUser : IDAOUser
         throw new NotImplementedException();
     }
 
-    public Task<User> GetById(long id)
+    public async Task<User?> GetById(long? id)
     {
-        throw new NotImplementedException();
+        if (id == null) return null;
+        if (context.Genres == null) return null;
+
+        User? userId = await context.Users
+            .Where(userId => userId.Id == id)
+            .FirstOrDefaultAsync();
+
+        return userId;
     }
 
     public async Task<User?> Get(string userName, string password)
@@ -71,9 +78,11 @@ public class DAOEFUser : IDAOUser
 
         return user;
     }
-
-    public Task Save(User user)
+    public async Task Save(User user)
     {
-        throw new NotImplementedException();
+        if (user == null) throw new ArgumentNullException(nameof(user));
+        
+        await context.Users.AddAsync(user);
+        await context.SaveChangesAsync(); 
     }
 }

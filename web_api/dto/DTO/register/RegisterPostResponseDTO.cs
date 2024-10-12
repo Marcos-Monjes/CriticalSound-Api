@@ -10,6 +10,8 @@ public class RegisterPostResponseDTO : ResponseDTO
     public DateTime? birthdate { get; set; }
 
     public string mail { get; set; } ="";
+    public string password { get; set; } ="";
+
 
     
 }

@@ -29,11 +29,11 @@ public class RegisterController : ControllerBase
     {
         IDAOUser daoRegisterUser = daoFactory.CreateDAOUser();
 
-        User? userExisting = await daoRegisterUser.Get(
+        User? user = await daoRegisterUser.Get(
         RegisterPostRequestDTO.userName, 
         RegisterPostRequestDTO.password);
         
-        if (userExisting != null && userExisting.userName == RegisterPostRequestDTO.userName)
+        if (user!= null && user.userName == RegisterPostRequestDTO.userName)
         {
             return BadRequest(new ErrorResponseDTO
             {
@@ -85,15 +85,39 @@ public class RegisterController : ControllerBase
                 message = "El password es un dato obligatorio"
             });
         }
+        
+        User newUser = new User
+        {
+            userName = RegisterPostRequestDTO.userName,  
+            Mail = RegisterPostRequestDTO.mail,          
+            Birthdate = RegisterPostRequestDTO.birthdate    
+        };
 
+        await daoRegisterUser.Save(newUser);
 
         return Ok(new RegisterPostResponseDTO
         {
             success= true,
-            userName = RegisterPostRequestDTO.userName,
-            birthdate= RegisterPostRequestDTO.birthdate,
-            mail= RegisterPostRequestDTO.mail,
+            message="Nuevo usuario registrado",
+            id= newUser.Id,
+            userName = newUser.userName,
+            birthdate= newUser.Birthdate,
+            mail= newUser.Mail,
+            password=newUser.password
             
         });
     }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(long id)
+    {
+        IDAOUser daoRegisterUser = daoFactory.CreateDAOUser();
+        User? user = await daoRegisterUser.GetById(id);
+        if (user == null)
+        {
+            return BadRequest("Usuario no encontrado");
+        }
+
+        return Ok(user);
+}
 }
