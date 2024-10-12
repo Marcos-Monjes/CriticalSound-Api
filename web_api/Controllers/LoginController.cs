@@ -39,12 +39,12 @@ public class LoginController : ControllerBase
             return Ok(new LoginResponseDTO 
             {
                 success = true,
-                message = "",
+                message = "Login Sucess",
                 id = user.Id,
                 userName = user.userName,
                 description = user.Description,
-                urlAvatar = "",
-                mail = user.Mail
+                mail = user.Mail,
+                urlAvatar = ""
             });
         }
         
