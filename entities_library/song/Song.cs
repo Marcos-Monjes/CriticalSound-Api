@@ -4,11 +4,11 @@ using entities_library.reactions;
 using entities_library.billboard;
 
 
-namespace entities_library.post;
+namespace entities_library.song;
 
-public class Post
+public class Song
 {
-    public long PostId { get; set; }
+    public long SongId { get; set; }
     public required string Title { get; set; } // titulo de la cancion artista o la banda y el nombre de la cancion
     public required string UrlImage { get; set; }  //averiguar como almacenar la url de una imagen
     public required string Description{ get; set; }

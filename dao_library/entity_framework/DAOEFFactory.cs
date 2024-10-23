@@ -1,8 +1,8 @@
 using dao_library.Interfaces;
 using dao_library.Interfaces.login;
 using dao_library.entity_framework.login;
-using dao_library.Interfaces.post;
-using dao_library.entity_framework.post;
+using dao_library.Interfaces.song;
+using dao_library.entity_framework.song;
 using dao_library.Interfaces.comment;
 using dao_library.entity_framework.comment;
 using dao_library.Interfaces.billboard;
@@ -24,7 +24,10 @@ public class DAOEFFactory : IDAOFactory
     {
         this.context = context;
     }
-
+        public IDAOSong CreateDAOSong()
+    {
+        throw new NotImplementedException();
+    }
     public IDAOBillboard CreateDAOBillboard()
     {
         return new DAOEFBillboard(context);
@@ -38,11 +41,6 @@ public class DAOEFFactory : IDAOFactory
     public IDAOPerson CreateDAOPerson()
     {
         return new DAOEFPerson(context);
-    }
-
-    public IDAOPost CreateDAOPost()
-    {
-        return new DAOEFPost(context);
     }
 
     public IDAOUser CreateDAOUser()
@@ -83,4 +81,6 @@ public class DAOEFFactory : IDAOFactory
     {
         throw new NotImplementedException();
     }
+
+
 }

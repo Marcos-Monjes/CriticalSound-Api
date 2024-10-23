@@ -4,9 +4,9 @@ using entities_library.genre;
 using entities_library.comment;
 using entities_library.file_system;
 using entities_library.login;
-using entities_library.post;
 using entities_library.reactions;
 using Microsoft.EntityFrameworkCore;
+using entities_library.song;
 
 namespace dao_library;
 
@@ -23,7 +23,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Person>? Persons { get; set;}
     public DbSet<User>? Users { get; set;}
     public DbSet<UserBan>? UserBans { get; set;}
-    public DbSet<Post>? Posts { get; set;}
+    public DbSet<Song>? Songs { get; set;}
     public DbSet<Reaction>? Reactions { get; set;}
     public DbSet<Genre>? Genres { get; set;}
 
@@ -32,10 +32,10 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Configurar la relación uno a uno entre Post y Billboard
-        modelBuilder.Entity<Post>()
+        modelBuilder.Entity<Song>()
             .HasOne(p => p.Billboard)
-            .WithOne(b => b.Post)
-            .HasForeignKey<Billboard>(b => b.PostId); // Definir la clave foránea en Billboard
+            .WithOne(b => b.song)
+            .HasForeignKey<Billboard>(b => b.SongId); // Definir la clave foránea en Billboard
 
         base.OnModelCreating(modelBuilder);
     }

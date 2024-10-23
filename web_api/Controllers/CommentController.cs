@@ -9,8 +9,8 @@ namespace web_api.Controllers;
 [Route("[controller]")]
 public class CommentController : ControllerBase
 {
-    private readonly ILogger<PostController> _logger;
-    public CommentController(ILogger<PostController> logger)
+    private readonly ILogger<SongController> _logger;
+    public CommentController(ILogger<SongController> logger)
     {
         _logger = logger;
     }
