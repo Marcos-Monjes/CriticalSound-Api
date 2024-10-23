@@ -42,7 +42,6 @@ public class LoginController : ControllerBase
                 message = "Login Sucess",
                 id = user.Id,
                 userName = user.userName,
-                description = user.Description,
                 mail = user.Mail,
                 urlAvatar = ""
             });

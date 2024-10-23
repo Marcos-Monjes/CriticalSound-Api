@@ -1,74 +1,47 @@
-namespace entities_library.login;
+using System.Security.Cryptography;
+using System.Text;
 
-public class User : Person
+namespace entities_library.login
 {
-    #region Atributtes
-    public string password { get; set; } = "";
-    public required string userName{ get; set; }
-
-    public UserStatus UserStatus { get; set; } = UserStatus.Active;
-
-    public entities_library.file_system.File? File { get; set; }
-
-    public string Description { get; set; } = "";
-    #endregion
-
-    #region Methods
-    public void Encrypt(string password)
+    public class User : Person
     {
-        this.password = this.encrypt(password);
-    } 
+        #region Atributtes
+        public string password { get; set; } = "";
+        public required string userName { get; set; }
 
-    public bool IsPassword(string password)
-    {
-        return this.encrypt(password) == this.password;
+        public UserStatus userStatus { get; set; } = UserStatus.Active;
+
+        public entities_library.file_system.File? File { get; set; }
+       
+        #endregion
+
+        #region Methods
+        public void Encrypt(string password)
+        {
+            this.password = this.encrypt(password);
+        }
+
+        public bool IsPassword(string password)
+        {
+            return this.encrypt(password) == this.password;
+        }
+
+        private string encrypt(string password)
+        {// este es un hash criptográfico que convierte la contraseña en una cadena hexadecimal.
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                // convierte la contraseña en bytes en una lista ,usando la codificación UTF-8, luego aplica el hash con SHA256.
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+                // convierte la lista de bytes a un string hexadecimal
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+        #endregion
     }
-
-    private string encrypt(string password)
-    {
-        return password.ToUpper();
-    }
-    #endregion
 }
-
-
-// using entities_library.ban;
-
-// namespace entities_library.login;
-
-
-// public class User : Person
-// {
-
-//     #region Atributtes
-
-//     public  string  Mail { get; set; }="";
-
-//     public string Password { get; set; } ="";
-
-
-//     public UserStatus UserStatus { get; set; } = UserStatus.Active;
-
-//     public entities_library.file_system.Filee? Filee { get; set; }
-
-
-//     #endregion
-
-//     #region Methods
-//     public void Encrypt(string password)
-//     {
-//         this.Password = this.encrypt(password);
-//     }
-
-//     public bool IsPassword(string password)
-//     {
-//         return this.encrypt(password) == this.Password;
-//     }
-
-//     private string encrypt(string password)
-//     {
-        
-//         return password;
-//     }
-//     #endregion
-// }
