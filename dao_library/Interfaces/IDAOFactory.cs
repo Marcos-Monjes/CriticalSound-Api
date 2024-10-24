@@ -1,4 +1,3 @@
-using dao_library.Interfaces.billboard;
 using dao_library.Interfaces.comment;
 using dao_library.Interfaces.login;
 using dao_library.Interfaces.song;
@@ -17,7 +16,6 @@ public interface IDAOFactory
     IDAOUserStatus CreateDAOUserStatus();
     IDAOSong CreateDAOSong();
     IDAOComment CreateDAOComment();
-    IDAOBillboard CreateDAOBillboard();
     IDAOFileType CreateDAOFileType();
     IDAOGenre CreateDAOGenre();
     IDAOFile CreateDAOFile();

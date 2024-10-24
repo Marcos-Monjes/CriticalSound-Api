@@ -5,8 +5,6 @@ using dao_library.Interfaces.song;
 using dao_library.entity_framework.song;
 using dao_library.Interfaces.comment;
 using dao_library.entity_framework.comment;
-using dao_library.Interfaces.billboard;
-using dao_library.entity_framework.billboard;
 using dao_library.Interfaces.file_system;
 using dao_library.entity_framework.file_system;
 using dao_library.entity_framework.genre;
@@ -24,13 +22,9 @@ public class DAOEFFactory : IDAOFactory
     {
         this.context = context;
     }
-        public IDAOSong CreateDAOSong()
+    public IDAOSong CreateDAOSong()
     {
-        throw new NotImplementedException();
-    }
-    public IDAOBillboard CreateDAOBillboard()
-    {
-        return new DAOEFBillboard(context);
+        return new DAOEFSong(context);
     }
 
     public IDAOComment CreateDAOComment()

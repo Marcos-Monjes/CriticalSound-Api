@@ -1,5 +1,4 @@
 ﻿using System.Data.Common;
-using entities_library.billboard;
 using entities_library.genre;
 using entities_library.comment;
 using entities_library.file_system;
@@ -16,7 +15,6 @@ public class ApplicationDbContext : DbContext
         : base(options)
     {}
 
-    public DbSet<Billboard>? Billboards { get; set;}
     public DbSet<Comment>? Comments { get; set;}
     public DbSet<entities_library.file_system.File>? Files  { get; set;}
     public DbSet<FileType>? FileTypes { get; set;}
@@ -31,12 +29,6 @@ public class ApplicationDbContext : DbContext
     // Sobrescribimos el método OnModelCreating para definir la relación uno a uno
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Configurar la relación uno a uno entre Post y Billboard
-        modelBuilder.Entity<Song>()
-            .HasOne(p => p.Billboard)
-            .WithOne(b => b.song)
-            .HasForeignKey<Billboard>(b => b.SongId); // Definir la clave foránea en Billboard
-
         base.OnModelCreating(modelBuilder);
     }
 }
